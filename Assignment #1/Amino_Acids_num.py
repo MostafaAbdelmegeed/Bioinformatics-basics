@@ -1,5 +1,6 @@
 from functions import parse, translate
 
+print("Please enter Sequence file path:")
 directory = input()
 
 sequence = parse(directory)

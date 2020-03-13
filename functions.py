@@ -28,7 +28,7 @@ def parse(path):
     file = open(path, 'r')
     seq = file.read()
     seq = seq.rstrip('\r\n')
-    return seq
+    return seq.upper()
 
 
 def transcript(template_strand):
