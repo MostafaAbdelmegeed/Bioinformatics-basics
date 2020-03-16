@@ -1,6 +1,18 @@
+# seq1.txt & seq2.txt are the sequences from slide #7 in Lecture_02
+# The script will ask you for the sequences as pathes to the .txt files containing them
+# simply just type seq1.txt and seq2.txt when asked for the sequences
+
+
 import numpy as np
 
-from functions import parse
+
+
+def parse(path):
+    file = open(path, 'r')
+    seq = file.read()
+    seq = seq.rstrip('\r\n')
+    return seq.upper()
+
 
 H = 'H'
 V = 'V'
