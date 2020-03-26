@@ -100,32 +100,15 @@ def traceback(matrix):
     return sequence1[::-1], sequence2[::-1]  # Inverting the strings
 
 
-def global_alignment(seq1, seq2, match_score, mismatch_penalty, gap_penalty, perm=False):
+def global_alignment(seq1, seq2, match_score=2, mismatch_penalty=-3, gap_penalty=-5, perm=False):
     matrix = initialization(seq1, seq2, penalty=gap_penalty)  # Check Function Header
     matrix = fill(matrix, match_score, mismatch_penalty, gap_penalty)  # Check Function Header
     if not perm:  # No Permutations, just the first alignment
         alignment = traceback(matrix)
-        print("Possible Alignment with score {}\n{}\n{}".format(matrix[-1, -1, 0], alignment[0], alignment[1]))
+        return alignment
     else:  # All Possible Alignments
         alignments = [(traceback(matrix))]
         permutations = get_permutations(matrix)
         for perm in permutations:
             alignments.append(perm)
-        for alignment in alignments:
-            print("Possible Alignment with score {}\n{}\n{}".format(matrix[-1, -1, 0], alignment[0], alignment[1]))
-            print('---------------')
-
-
-print("Please Enter First Sequence Path: ex. 'seq1.txt':")
-seq1_path = input()
-print("Please Enter Second Sequence Path: ex. 'seq2.txt':")
-seq2_path = input()
-print("Please Enter Matching Score:")
-match_score = int(input())
-print("Please Enter Mismatch Penalty:")
-mismatch_penalty = int(input())
-print("Please Enter Gap Penalty:")
-gap_penalty = int(input())
-print("Do you want all the permutations? (Y/N)\tThis may take some time with long sequences")
-perm = True if input().upper() == 'Y' else False
-global_alignment(parse(seq1_path), parse(seq2_path), match_score, mismatch_penalty, gap_penalty, perm=perm)
+        return alignments
