@@ -2,7 +2,7 @@ from copy import deepcopy
 
 import numpy as np
 
-from functions import parse
+from distances import distances
 
 
 def njm(dist_matrix):
@@ -22,13 +22,7 @@ def njt(list_of_sequences):
     stack = []
     D_matrices = []
     J_matrices = []
-    D_matrix = np.array([[0, 0.17, 0.59, 0.59, 0.77, 0.81, 0.87],
-                         [0.17, 0, 0.6, 0.59, 0.77, 0.82, 0.86],
-                         [0.59, 0.6, 0, 0.13, 0.75, 0.73, 0.86],
-                         [0.59, 0.59, 0.13, 0, 0.75, 0.74, 0.88],
-                         [0.77, 0.77, 0.75, 0.75, 0, 0.8, 0.93],
-                         [0.81, 0.82, 0.73, 0.74, 0.8, 0, 0.9],
-                         [0.87, 0.86, 0.86, 0.88, 0.93, 0.9, 0]])
+    D_matrix = distances(list_of_sequences)
     D_matrices.append(D_matrix.copy())
     while D_matrix.size > 4:
         J_matrix = njm(D_matrix).round(3)
@@ -58,8 +52,8 @@ def njt(list_of_sequences):
             Dlast = (D_matrices[iteration][j, indices[0]] - diu).__round__(3)
             stack.append([1, Dlast])
         iteration += 1
-    retrieve_absolute_indices(stack)
     return stack
+
 
 ## Needs to be implemented in recursively
 def retrieve_absolute_indices(list_of_ids):
@@ -72,7 +66,3 @@ def retrieve_absolute_indices(list_of_ids):
             for j in range(1, len(absolute_indices[1:])):
                 absolute_indices[j][0] += shift
                 absolute_indices[j][1] += shift
-    print(list_of_ids)
-    print(absolute_indices)
-
-
