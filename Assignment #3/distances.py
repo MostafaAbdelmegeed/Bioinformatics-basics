@@ -17,8 +17,11 @@ def distances(list_of_sequences, used_align=False):
                 elif alignment[0][k] != alignment[1][k]:
                     mismatch_count += 1
             used_alignments.append(alignment)
-            distances_matrix[i, j] = gap_count / (len(alignment[0]) - gap_count)
+            distances_matrix[i, j] = mismatch_count / (len(alignment[0]) - gap_count)
     if used_align:
         return distances_matrix, used_alignments
     else:
         return distances_matrix
+
+
+
