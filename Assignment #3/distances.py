@@ -1,6 +1,8 @@
 import numpy as np
 
 from Needleman_Wunsch import global_alignment
+from helper_functions import parse
+
 
 
 def distances(list_of_sequences, used_align=False):

@@ -1,0 +1,5 @@
+# ide specific configuration
+.idea
+
+# virtual env
+venv

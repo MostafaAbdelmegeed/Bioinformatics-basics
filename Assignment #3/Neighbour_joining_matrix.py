@@ -1,7 +1,5 @@
 from copy import deepcopy
-
 import numpy as np
-
 from distances import distances
 
 
@@ -55,7 +53,7 @@ def njt(list_of_sequences):
     return stack
 
 
-## Needs to be implemented in recursively
+## Needs to be implemented recursively
 def retrieve_absolute_indices(list_of_ids):
     absolute_indices = deepcopy(list_of_ids)
     shift = 0
